@@ -23,7 +23,7 @@ const EbookSection = () => {
         {!showViewer ? (
           <div className="ebook-intro" style={introStyle}>
             <div style={coverWrapperStyle} onClick={() => setShowViewer(true)}>
-              <img src="/assets/AI와 신앙 표지.png" alt="AI와 신앙 표지" style={coverStyle} />
+              <img src="/assets/ebook-cover.png" alt="AI와 신앙 표지" style={coverStyle} />
               <div className="hover-overlay" style={overlayStyle}>
                 <BookOpen size={48} color="white" />
                 <span style={{color: 'white', marginTop: '16px', fontWeight: 'bold'}}>전자책 읽기</span>
@@ -40,7 +40,7 @@ const EbookSection = () => {
                 <button className="btn btn-primary" onClick={() => setShowViewer(true)}>
                   <BookOpen size={20} /> 바로 읽기
                 </button>
-                <a href="/assets/AI와_신앙_교정본.pdf" download className="btn btn-outline">
+                <a href="/assets/ebook.pdf" download className="btn btn-outline">
                   <Download size={20} /> PDF 다운로드
                 </a>
               </div>
@@ -51,7 +51,7 @@ const EbookSection = () => {
             <div style={viewerHeaderStyle}>
               <h3 style={{margin: 0}}>AI와 신앙 전자책 뷰어</h3>
               <div style={{display: 'flex', gap: '16px', alignItems: 'center'}}>
-                <a href="/assets/AI와_신앙_교정본.pdf" download className="btn btn-primary" style={{padding: '8px 16px', fontSize: '0.875rem'}}>
+                <a href="/assets/ebook.pdf" download className="btn btn-primary" style={{padding: '8px 16px', fontSize: '0.875rem'}}>
                   <Download size={16} /> 다운로드
                 </a>
                 <button className="btn btn-outline" style={{padding: '8px 16px'}} onClick={() => setShowViewer(false)}>
@@ -62,7 +62,7 @@ const EbookSection = () => {
             
             <div style={pdfWrapperStyle}>
               <Document
-                file={encodeURI("/assets/AI와_신앙_교정본.pdf")}
+                file="/assets/ebook.pdf"
                 onLoadSuccess={onDocumentLoadSuccess}
                 loading={<div style={{padding: '40px', textAlign: 'center'}}>PDF를 불러오는 중입니다...</div>}
                 error={<div style={{padding: '40px', textAlign: 'center', color: 'red'}}>PDF를 불러오는데 실패했습니다. 다운로드 버튼을 이용해주세요.</div>}

@@ -115,16 +115,12 @@ ul {
   
   .nav-list {
     display: flex;
-    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px 16px;
     font-size: 0.875rem;
-    overflow-x: auto;
     width: 100%;
-    padding-bottom: 4px;
-    white-space: nowrap;
-    scrollbar-width: none; /* Firefox */
-  }
-  .nav-list::-webkit-scrollbar {
-    display: none; /* Chrome/Safari */
+    padding-bottom: 8px;
   }
   
   header {

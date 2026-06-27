@@ -14,7 +14,7 @@ function App() {
       <BgmPlayer />
       <header style={headerStyle}>
         <div className="container header-inner" style={headerInnerStyle}>
-          <h1 style={{fontSize: '1.25rem', fontWeight: 700, margin: 0, color: 'var(--primary-color)'}}>
+          <h1 style={{fontSize: '1.25rem', fontWeight: 700, margin: 0, color: 'var(--primary-color)', whiteSpace: 'nowrap'}}>
             목회AI연구소
           </h1>
           <nav style={{width: '100%'}}>
