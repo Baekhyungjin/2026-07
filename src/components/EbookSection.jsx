@@ -3,8 +3,11 @@ import { Document, Page, pdfjs } from 'react-pdf';
 import { Download, BookOpen, X } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-// react-pdf worker setup
-pdfjs.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
+// react-pdf worker setup (Vite 방식)
+pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+  'pdfjs-dist/build/pdf.worker.min.mjs',
+  import.meta.url,
+).toString();
 
 const EbookSection = () => {
   const [numPages, setNumPages] = useState(null);
