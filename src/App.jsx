@@ -13,12 +13,12 @@ function App() {
     <div className="app-container">
       <BgmPlayer />
       <header style={headerStyle}>
-        <div className="container" style={headerInnerStyle}>
+        <div className="container header-inner" style={headerInnerStyle}>
           <h1 style={{fontSize: '1.25rem', fontWeight: 700, margin: 0, color: 'var(--primary-color)'}}>
             목회AI연구소
           </h1>
-          <nav>
-            <ul style={navStyle}>
+          <nav style={{width: '100%'}}>
+            <ul className="nav-list" style={navStyle}>
               <li><a href="#magazine">7월 매거진</a></li>
               <li><a href="#ebook">전자책</a></li>
               <li><a href="#gpts">GPTS</a></li>

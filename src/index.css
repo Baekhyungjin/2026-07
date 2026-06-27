@@ -90,3 +90,71 @@ ul {
   background-color: var(--primary-color);
   color: var(--white);
 }
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .section {
+    padding: 40px 0;
+  }
+  
+  .section-title {
+    font-size: 1.5rem;
+    margin-bottom: 24px;
+  }
+  
+  .container {
+    padding: 0 16px;
+  }
+
+  /* Header & Nav */
+  .header-inner {
+    flex-direction: column;
+    gap: 12px;
+    padding: 12px 0;
+  }
+  
+  .nav-list {
+    display: flex;
+    gap: 12px;
+    font-size: 0.875rem;
+    overflow-x: auto;
+    width: 100%;
+    padding-bottom: 4px;
+    white-space: nowrap;
+    scrollbar-width: none; /* Firefox */
+  }
+  .nav-list::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+  }
+  
+  header {
+    height: auto !important;
+  }
+  main {
+    padding-top: 100px !important; /* Adjusted for taller header */
+  }
+
+  /* Hero */
+  .hero-section {
+    padding: 60px 0 40px !important;
+  }
+  .hero-title {
+    font-size: 1.75rem !important;
+  }
+  
+  /* Ebook */
+  .ebook-intro {
+    flex-direction: column;
+    gap: 24px !important;
+    text-align: center;
+  }
+  .ebook-intro .btn-group {
+    justify-content: center;
+  }
+
+  /* Skill Download */
+  .skill-card {
+    width: 100% !important;
+  }
+}
+

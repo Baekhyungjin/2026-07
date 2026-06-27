@@ -11,7 +11,7 @@ const SkillDownloadSection = () => {
         </p>
         
         <div style={flexStyle}>
-          <div style={cardStyle}>
+          <div className="skill-card" style={cardStyle}>
             <FileCode size={48} color="var(--primary-color)" style={{marginBottom: '16px'}} />
             <h3 style={{fontSize: '1.25rem', marginBottom: '8px', wordBreak: 'keep-all'}}>설교 콘텐츠 오케스트레이션 스킬</h3>
             <p style={{fontSize: '0.875rem', color: 'var(--text-muted)', marginBottom: '24px'}}>설교 준비부터 제작까지 한 번에</p>
@@ -20,7 +20,7 @@ const SkillDownloadSection = () => {
             </a>
           </div>
           
-          <div style={cardStyle}>
+          <div className="skill-card" style={cardStyle}>
             <FileCode size={48} color="var(--primary-color)" style={{marginBottom: '16px'}} />
             <h3 style={{fontSize: '1.25rem', marginBottom: '8px', wordBreak: 'keep-all'}}>설교문을 썸네일로 스킬</h3>
             <p style={{fontSize: '0.875rem', color: 'var(--text-muted)', marginBottom: '24px'}}>설교 텍스트 기반 썸네일 생성</p>

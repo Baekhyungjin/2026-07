@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 const HeroSection = () => {
   return (
-    <section className="section" style={heroStyle}>
+    <section className="section hero-section" style={heroStyle}>
       <div className="container">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
@@ -12,7 +12,7 @@ const HeroSection = () => {
           style={contentStyle}
         >
           <span style={badgeStyle}>2026년 7월 파트너 제공 리소스</span>
-          <h2 style={titleStyle}>함께 세워가는 목회AI연구소</h2>
+          <h2 className="hero-title" style={titleStyle}>함께 세워가는 목회AI연구소</h2>
           <p style={descStyle}>
             언제나 목회AI연구소와 함께 동역해 주시는 파트너 여러분께 진심으로 감사드립니다.<br/>
             여러분의 기도와 후원이 있어 한국 교회의 건강한 AI 도입과 목회 혁신을 향한 발걸음을 

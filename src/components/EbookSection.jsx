@@ -24,7 +24,7 @@ const EbookSection = () => {
         <h2 className="section-title">특별 제공 전자책</h2>
         
         {!showViewer ? (
-          <div style={introStyle}>
+          <div className="ebook-intro" style={introStyle}>
             <div style={coverWrapperStyle} onClick={() => setShowViewer(true)}>
               <img src="/assets/AI와 신앙 표지.png" alt="AI와 신앙 표지" style={coverStyle} />
               <div className="hover-overlay" style={overlayStyle}>
@@ -39,7 +39,7 @@ const EbookSection = () => {
                 AI 시대의 신앙과 목회에 대한 깊이 있는 통찰을 담은 전자책을 파트너 여러분께 제공합니다.<br/>
                 웹에서 바로 읽어보시거나 기기에 다운로드하여 소장하실 수 있습니다.
               </p>
-              <div style={{display: 'flex', gap: '16px'}}>
+              <div className="btn-group" style={{display: 'flex', gap: '16px'}}>
                 <button className="btn btn-primary" onClick={() => setShowViewer(true)}>
                   <BookOpen size={20} /> 바로 읽기
                 </button>
