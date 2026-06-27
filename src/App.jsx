@@ -15,7 +15,9 @@ function App() {
       <header style={headerStyle}>
         <div className="container header-inner" style={headerInnerStyle}>
           <div style={{display: 'flex', alignItems: 'center', gap: '10px'}}>
-            <img src="/logo.png" alt="logo" style={{width: '28px', height: '28px', borderRadius: '4px'}} />
+            <div style={{width: '36px', height: '36px', overflow: 'hidden', borderRadius: '8px', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+              <img src="/logo.png" alt="logo" style={{width: '36px', height: '36px', objectFit: 'contain', transform: 'scale(2.8)'}} />
+            </div>
             <h1 style={{fontSize: '1.25rem', fontWeight: 700, margin: 0, color: 'var(--primary-color)', whiteSpace: 'nowrap'}}>
               목회AI연구소
             </h1>
