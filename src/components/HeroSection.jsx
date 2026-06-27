@@ -14,11 +14,10 @@ const HeroSection = () => {
           <span style={badgeStyle}>2026년 7월 파트너 제공 리소스</span>
           <h2 className="hero-title" style={titleStyle}>함께 세워가는 목회AI연구소</h2>
           <p style={descStyle}>
-            언제나 목회AI연구소와 함께 동역해 주시는 파트너 여러분께 진심으로 감사드립니다.<br/>
-            여러분의 기도와 후원이 있어 한국 교회의 건강한 AI 도입과 목회 혁신을 향한 발걸음을 
-            멈추지 않을 수 있었습니다.<br/><br/>
-            7월을 맞이하여, 목회 현장에서 유용하게 활용하실 수 있는 다양한 리소스와 
-            최신 AI 동향 자료, 그리고 전자책을 준비했습니다. 앞으로도 변함없는 동역과 기도를 부탁드립니다.
+            언제나 목회AI연구소와 함께 동역해 주시는 파트너 여러분께 진심으로 감사드립니다.
+            여러분의 기도와 후원이 있어 한국 교회의 건강한 AI 도입과 목회 혁신을 향한 발걸음을 멈추지 않을 수 있었습니다.
+            <br/><br/>
+            7월을 맞이하여, 목회 현장에서 유용하게 활용하실 수 있는 다양한 리소스와 최신 AI 동향 자료, 그리고 전자책을 준비했습니다. 앞으로도 변함없는 동역과 기도를 부탁드립니다.
           </p>
           <div style={{marginTop: '32px'}}>
             <strong>- 백형진 소장 올림 -</strong>
@@ -62,6 +61,7 @@ const descStyle = {
   fontSize: '1.125rem',
   lineHeight: '1.8',
   opacity: 0.9,
+  wordBreak: 'keep-all',
 };
 
 export default HeroSection;
