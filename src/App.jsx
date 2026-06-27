@@ -14,10 +14,13 @@ function App() {
       <BgmPlayer />
       <header style={headerStyle}>
         <div className="container header-inner" style={headerInnerStyle}>
-          <h1 style={{fontSize: '1.25rem', fontWeight: 700, margin: 0, color: 'var(--primary-color)', whiteSpace: 'nowrap'}}>
-            목회AI연구소
-          </h1>
-          <nav style={{width: '100%'}}>
+          <div style={{display: 'flex', alignItems: 'center', gap: '10px'}}>
+            <img src="/favicon.png" alt="logo" style={{width: '28px', height: '28px', borderRadius: '4px'}} />
+            <h1 style={{fontSize: '1.25rem', fontWeight: 700, margin: 0, color: 'var(--primary-color)', whiteSpace: 'nowrap'}}>
+              목회AI연구소
+            </h1>
+          </div>
+          <nav className="main-nav">
             <ul className="nav-list" style={navStyle}>
               <li><a href="#magazine">7월 매거진</a></li>
               <li><a href="#ebook">전자책</a></li>
