@@ -22,6 +22,15 @@ const categories = {
 
 const GptsSection = () => {
   const [activeTab, setActiveTab] = useState('ppt');
+  const [expanded, setExpanded] = useState(false);
+
+  const handleTabChange = (key) => {
+    setActiveTab(key);
+    setExpanded(false);
+  };
+
+  const currentImages = categories[activeTab].images;
+  const displayedImages = expanded ? currentImages : currentImages.slice(0, 1);
 
   return (
     <section className="section" style={{backgroundColor: '#f8fafc'}}>
@@ -48,7 +57,7 @@ const GptsSection = () => {
             {Object.keys(categories).map(key => (
               <button
                 key={key}
-                onClick={() => setActiveTab(key)}
+                onClick={() => handleTabChange(key)}
                 style={activeTab === key ? activeTabStyle : tabStyle}
               >
                 {categories[key].title}
@@ -57,12 +66,24 @@ const GptsSection = () => {
           </div>
           
           <div style={gridStyle}>
-            {categories[activeTab].images.map((img, idx) => (
+            {displayedImages.map((img, idx) => (
               <div key={idx} style={imageWrapperStyle}>
                 <img src={`/assets/${img}`} alt={`${categories[activeTab].title} ${idx + 1}`} style={imageContentStyle} />
               </div>
             ))}
           </div>
+
+          {!expanded && currentImages.length > 1 && (
+            <div style={{textAlign: 'center', marginTop: '24px'}}>
+              <button 
+                className="btn btn-outline" 
+                onClick={() => setExpanded(true)}
+                style={{padding: '12px 32px'}}
+              >
+                더 보기 ({currentImages.length - 1}장)
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </section>

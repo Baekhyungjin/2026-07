@@ -3,11 +3,8 @@ import { Document, Page, pdfjs } from 'react-pdf';
 import { Download, BookOpen, X } from 'lucide-react';
 
 // react-pdf worker setup
-// react-pdf worker setup (Vite 방식)
-pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-  'pdfjs-dist/build/pdf.worker.min.mjs',
-  import.meta.url,
-).toString();
+// react-pdf worker setup (CDN 방식)
+pdfjs.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
 const EbookSection = () => {
   const [numPages, setNumPages] = useState(null);
@@ -121,6 +118,10 @@ const coverWrapperStyle = {
 
 const coverStyle = {
   width: '100%',
+  height: 'auto',
+  maxHeight: '400px',
+  objectFit: 'contain',
+  backgroundColor: '#f1f5f9',
   display: 'block',
 };
 
