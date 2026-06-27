@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
 import { Download, BookOpen, X } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 // react-pdf worker setup
-// react-pdf worker setup (CDN 방식)
 pdfjs.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
 const EbookSection = () => {
@@ -18,17 +18,37 @@ const EbookSection = () => {
   return (
     <section className="section">
       <div className="container">
-        <h2 className="section-title">특별 제공 전자책</h2>
+        <motion.h2 
+          className="section-title"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          특별 제공 전자책
+        </motion.h2>
         
         {!showViewer ? (
-          <div className="ebook-intro" style={introStyle}>
-            <div style={coverWrapperStyle} onClick={() => setShowViewer(true)}>
+          <motion.div 
+            className="ebook-intro" 
+            style={introStyle}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <motion.div 
+              style={coverWrapperStyle} 
+              onClick={() => setShowViewer(true)}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
               <img src="/assets/ebook-cover.png" alt="AI와 신앙 표지" style={coverStyle} />
               <div className="hover-overlay" style={overlayStyle}>
                 <BookOpen size={48} color="white" />
                 <span style={{color: 'white', marginTop: '16px', fontWeight: 'bold'}}>전자책 읽기</span>
               </div>
-            </div>
+            </motion.div>
             
             <div style={infoStyle}>
               <h3 style={{fontSize: '1.5rem', marginBottom: '16px'}}>AI와 신앙</h3>
@@ -45,7 +65,7 @@ const EbookSection = () => {
                 </a>
               </div>
             </div>
-          </div>
+          </motion.div>
         ) : (
           <div style={viewerContainerStyle}>
             <div style={viewerHeaderStyle}>

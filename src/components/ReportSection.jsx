@@ -1,5 +1,6 @@
 import React from 'react';
 import { FileText, ChevronRight } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const reports = [
   { id: 1, title: 'AI 전체 동향 보고서', file: 'ai 전체 동향 보고서.html' },
@@ -15,13 +16,18 @@ const ReportSection = () => {
         <h2 className="section-title">각 AI별 동향 보고서</h2>
         
         <div style={gridStyle}>
-          {reports.map(r => (
-            <a 
+          {reports.map((r, index) => (
+            <motion.a 
               key={r.id} 
               href={`/reports/${r.file}`} 
               target="_blank" 
               rel="noopener noreferrer"
               style={cardStyle}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              whileHover={{ y: -5 }}
             >
               <div style={iconWrapperStyle}>
                 <FileText size={24} color="var(--primary-color)" />
@@ -31,7 +37,7 @@ const ReportSection = () => {
                 <span style={subtitleStyle}>웹 리포트 보기</span>
               </div>
               <ChevronRight color="var(--text-muted)" />
-            </a>
+            </motion.a>
           ))}
         </div>
       </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 
 const seminars = [
   { id: 1, title: '인문학 & 목회기본 세미나', image: '인문학&목회기본 7월 세미나.png' },
@@ -11,20 +12,45 @@ const SeminarSection = () => {
   return (
     <section className="section">
       <div className="container">
-        <h2 className="section-title">7월 세미나 및 특강 안내</h2>
+        <motion.h2 
+          className="section-title"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          7월 세미나 및 특강 안내
+        </motion.h2>
         
-        <div style={gridStyle}>
+        <motion.div 
+          style={gridStyle}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={{
+            hidden: { opacity: 0 },
+            visible: { opacity: 1, transition: { staggerChildren: 0.2 } }
+          }}
+        >
           {seminars.map(s => (
-            <div key={s.id} style={cardStyle}>
+            <motion.div 
+              key={s.id} 
+              style={cardStyle}
+              variants={{
+                hidden: { opacity: 0, y: 30 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+              }}
+              whileHover={{ y: -5 }}
+            >
               <div style={imageWrapperStyle}>
                 <img src={`/assets/${s.image}`} alt={s.title} style={imageStyle} />
               </div>
               <div style={contentStyle}>
                 <h3 style={titleStyle}>{s.title}</h3>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
