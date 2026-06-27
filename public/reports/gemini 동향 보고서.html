@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ko" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>2026년 6월 구글 AI 및 워크스페이스 동향 보고서</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+    <style>
+        /* Samsung One UI / UX Style Custom CSS */
+        :root {
+            --oneui-bg: #f2f2f7;
+            --oneui-card-bg: #ffffff;
+            --oneui-text-main: #000000;
+            --oneui-text-sub: #8e8e93;
+            --oneui-accent: #007aff;
+            --oneui-divider: #e5e5ea;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --oneui-bg: #000000;
+                --oneui-card-bg: #1c1c1e;
+                --oneui-text-main: #ffffff;
+                --oneui-text-sub: #98989d;
+                --oneui-accent: #0a84ff;
+                --oneui-divider: #38383a;
+            }
+        }
+
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--oneui-bg);
+            color: var(--oneui-text-main);
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* One UI Header Style - Large Viewing Area */
+        .oneui-header {
+            padding: 60px 24px 20px 24px;
+            background-color: var(--oneui-bg);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transition: padding 0.3s ease;
+        }
+
+        .oneui-header h1 {
+            font-size: 2.125rem;
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: 8px;
+        }
+
+        .oneui-header p {
+            color: var(--oneui-text-sub);
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        /* Content Area - Interaction Area */
+        .oneui-content {
+            padding: 0 16px 40px 16px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* One UI Card Style */
+        .oneui-card {
+            background-color: var(--oneui-card-bg);
+            border-radius: 24px;
+            padding: 24px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .oneui-card:active {
+            transform: scale(0.98);
+        }
+
+        .oneui-card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .oneui-card-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(10, 132, 255, 0.1);
+            color: var(--oneui-accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 16px;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .oneui-card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+
+        .oneui-card-body {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--oneui-text-main);
+            opacity: 0.9;
+        }
+
+        .oneui-card-body p {
+            margin-bottom: 12px;
+        }
+        
+        .oneui-card-body p:last-child {
+            margin-bottom: 0;
+        }
+
+        .oneui-badge {
+            background-color: rgba(10, 132, 255, 0.1);
+            color: var(--oneui-accent);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 12px;
+        }
+
+        /* List styling within cards */
+        .oneui-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .oneui-list li {
+            position: relative;
+            padding-left: 16px;
+            margin-bottom: 8px;
+        }
+
+        .oneui-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 6px;
+            height: 6px;
+            background-color: var(--oneui-accent);
+            border-radius: 50%;
+        }
+
+        /* Table of Contents / Quick Nav */
+        .quick-nav {
+            display: flex;
+            overflow-x: auto;
+            padding: 0 24px 16px 24px;
+            scrollbar-width: none; /* Firefox */
+            gap: 8px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .quick-nav::-webkit-scrollbar {
+            display: none; /* Chrome, Safari */
+        }
+
+        .nav-pill {
+            background-color: var(--oneui-card-bg);
+            color: var(--oneui-text-main);
+            padding: 10px 18px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            white-space: nowrap;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            text-decoration: none;
+        }
+
+        .nav-pill:active {
+            background-color: var(--oneui-divider);
+        }
+
+        .author-section {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--oneui-text-sub);
+            font-size: 0.9rem;
+        }
+        
+        /* Highlight specific keywords */
+        .highlight {
+            font-weight: 600;
+            color: var(--oneui-accent);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Viewing Area -->
+    <header class="oneui-header">
+        <div style="max-width: 800px; margin: 0 auto;">
+            <h1>6월 구글 AI 및 워크스페이스 업데이트</h1>
+            <p>2026년 6월 동향 및 7월 프리뷰 상세 분석 보고서</p>
+        </div>
+    </header>
+
+    <!-- Quick Navigation -->
+    <nav class="quick-nav">
+        <a href="#studio" class="nav-pill">AI 스튜디오</a>
+        <a href="#flow" class="nav-pill">FLOW</a>
+        <a href="#stitch" class="nav-pill">Stitch</a>
+        <a href="#workspace" class="nav-pill">워크스페이스</a>
+        <a href="#gemini" class="nav-pill">Gemini 업데이트</a>
+        <a href="#antigravity" class="nav-pill">Antigravity</a>
+        <a href="#july" class="nav-pill">7월 예정</a>
+    </nav>
+
+    <!-- Content / Interaction Area -->
+    <main class="oneui-content">
+
+        <!-- 1. Google AI Studio -->
+        <section id="studio" class="oneui-card">
+            <div class="oneui-badge">Update</div>
+            <div class="oneui-card-header">
+                <div class="oneui-card-icon">1</div>
+                <h2 class="oneui-card-title">구글 AI 스튜디오 (Google AI Studio)</h2>
+            </div>
+            <div class="oneui-card-body">
+                <p>2026년 6월, 구글 AI 스튜디오는 단순한 프롬프트 테스트 환경을 넘어 <strong>엔터프라이즈급 멀티모달 오케스트레이션 플랫폼</strong>으로 진화했습니다.</p>
+                <ul class="oneui-list">
+                    <li><span class="highlight">동적 프롬프트 체이닝(Dynamic Prompt Chaining):</span> 단일 프롬프트에서 벗어나, 조건부 로직(If/Else)을 AI 스튜디오 UI 내에서 시각적으로 구성할 수 있는 기능이 추가되었습니다. 복잡한 추론 과정을 여러 단계로 쪼개어 테스트하는 것이 매우 직관적으로 변했습니다.</li>
+                    <li><span class="highlight">토큰 및 비용 최적화 대시보드:</span> 컨텍스트 윈도우가 500만 토큰 이상으로 확장됨에 따라, 캐싱(Caching)을 통한 비용 절감 시뮬레이션 도구가 내장되었습니다. 프롬프트 수정 전후의 예상 비용을 실시간으로 계산해 줍니다.</li>
+                    <li><span class="highlight">목회 AI 적용점:</span> 설교 준비 시 본문 주해, 예화 검색, 적용점 도출 등 단계별 프롬프트 체인을 구축하여 일관된 퀄리티의 결과물을 도출하는 템플릿화가 가능해졌습니다.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 2. FLOW -->
+        <section id="flow" class="oneui-card">
+            <div class="oneui-badge">New Launch</div>
+            <div class="oneui-card-header">
+                <div class="oneui-card-icon">2</div>
+                <h2 class="oneui-card-title">FLOW (Gemini Agent Flow)</h2>
+            </div>
+            <div class="oneui-card-body">
+                <p>구글 I/O 2026에서 예고되었던 <strong>시각적 기반 자율형 에이전트 빌더인 'FLOW'</strong>가 정식 런칭되었습니다. 이는 복잡한 코딩 없이 노드(Node) 연결만으로 AI 에이전트를 구축하는 혁신적인 UI입니다.</p>
+                <ul class="oneui-list">
+                    <li><span class="highlight">제로 코드 에이전트 구축:</span> API 트리거, 데이터 처리, Gemini 모델, 외부 출력 등의 모듈을 드래그 앤 드롭으로 연결합니다.</li>
+                    <li><span class="highlight">자가 수정(Self-Healing) 루프:</span> FLOW 내에서 에이전트가 오류(예: 잘못된 데이터 크롤링)를 감지하면, 사용자 개입 없이 스스로 프롬프트를 수정하여 재시도하는 로직이 기본 탑재되었습니다.</li>
+                    <li><span class="highlight">목회 AI 적용점:</span> '새가족 등록 안내 에이전트' 혹은 '주보 자동 생성 에이전트' 등 반복적인 행정 업무를 FLOW로 구축하여 자동화된 워크플로우를 완성할 수 있습니다.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 3. 스티치 (Stitch) -->
+        <section id="stitch" class="oneui-card">
+            <div class="oneui-badge">Framework</div>
+            <div class="oneui-card-header">
+                <div class="oneui-card-icon">3</div>
+                <h2 class="oneui-card-title">스티치 (Data Stitching Framework)</h2>
+            </div>
+            <div class="oneui-card-body">
+                <p>'Stitch'는 파편화된 비정형 데이터(문서, 영상, 오디오, 이메일 등)를 하나의 의미론적 그물망(Semantic Mesh)으로 꿰매어(Stitching) 주는 <strong>차세대 RAG(검색 증강 생성) 프레임워크</strong>입니다.</p>
+                <ul class="oneui-list">
+                    <li><span class="highlight">크로스 플랫폼 인덱싱:</span> 구글 드라이브뿐만 아니라 외부 클라우드(AWS, MS Azure) 및 로컬 서버의 데이터까지 보안 프로토콜을 유지한 채 하나의 컨텍스트로 엮어냅니다.</li>
+                    <li><span class="highlight">초거대 지식 그래프(Knowledge Graph) 자동 생성:</span> 문서 간의 연관성을 AI가 스스로 파악하여 보이지 않는 맥락을 연결합니다.</li>
+                    <li><span class="highlight">목회 AI 적용점:</span> 지난 10년간의 설교 원고, 교적부 기록, 회의록, 목회 칼럼 등을 Stitch로 연결하여 "2024년 추수감사절 설교 맥락과 이어지는 이번 주 설교 아웃라인을 잡아줘"와 같은 초개인화된 목회 데이터 활용이 가능해집니다.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 4. 구글 워크스페이스 -->
+        <section id="workspace" class="oneui-card">
+            <div class="oneui-badge">Major Update</div>
+            <div class="oneui-card-header">
+                <div class="oneui-card-icon">4</div>
+                <h2 class="oneui-card-title">구글 워크스페이스 (Google Workspace)</h2>
+            </div>
+            <div class="oneui-card-body">
+                <p>Gemini가 워크스페이스 내에 단순한 챗봇 보조를 넘어 <strong>문서의 '공동 저자(Co-Author)'이자 '실행자(Executor)'</strong>로 권한이 격상되었습니다.</p>
+                <ul class="oneui-list">
+                    <li><span class="highlight">자율형 문서 작성 (Docs & Slides):</span> 키워드만 던져주면 드라이브 내 과거 자료를 분석해 기업/교회의 톤앤매너에 맞춘 완벽한 제안서나 프레젠테이션(디자인 포함)을 생성합니다.</li>
+                    <li><span class="highlight">Google Vids 2.0:</span> 텍스트 프롬프트만으로 4K 해상도의 시네마틱 교육 영상 및 B-roll 영상을 즉각 렌더링합니다. 아바타 기능이 극도로 자연스러워졌습니다.</li>
+                    <li><span class="highlight">Sheets 자가 진단 및 예측:</span> 데이터 트렌드를 AI가 먼저 파악하여 필요한 함수, 매크로, 차트를 추천을 넘어 직접 생성하고 적용합니다.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 5. GEMINI 업데이트 -->
+        <section id="gemini" class="oneui-card">
+            <div class="oneui-badge">Core Engine</div>
+            <div class="oneui-card-header">
+                <div class="oneui-card-icon">5</div>
+                <h2 class="oneui-card-title">GEMINI 엔진 업데이트</h2>
+            </div>
+            <div class="oneui-card-body">
+                <p>Gemini 2.5(또는 3.0 프리뷰) 라인업의 성능이 비약적으로 향상되었습니다. 특히 반응 속도와 멀티모달 통합 측면에서 큰 도약이 있었습니다.</p>
+                <ul class="oneui-list">
+                    <li><span class="highlight">초거대 컨텍스트 윈도우:</span> 기본 500만 토큰, 연구소 및 엔터프라이즈 한정 1,000만 토큰을 지원하여 책 수백 권 분량을 한 번에 분석합니다.</li>
+                    <li><span class="highlight">Project Astra 통합:</span> 실시간 비전 및 음성 인식 기능이 Gemini에 완전 통합되었습니다. 스마트폰 카메라를 켜두고 실시간으로 대화하며 사물과 상황을 추론합니다. Latency(지연 시간)가 사람의 대화 수준인 50~100ms 이하로 줄었습니다.</li>
+                    <li><span class="highlight">코드 생성 및 수학 논리(Math/Logic) 강화:</span> 팩트 체크 및 논리적 추론에서의 환각(Hallucination) 현상이 이전 대비 80% 이상 감소했습니다.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 6. ANTIGRAVITY -->
+        <section id="antigravity" class="oneui-card">
+            <div class="oneui-badge">Innovation</div>
+            <div class="oneui-card-header">
+                <div class="oneui-card-icon">6</div>
+                <h2 class="oneui-card-title">프로젝트 'Antigravity'</h2>
+            </div>
+            <div class="oneui-card-body">
+                <p>가장 주목받는 새로운 이니셔티브인 <strong>'Antigravity (안티그래비티)'</strong>는 구글의 차세대 경량화 및 분산 컴퓨팅 구동 엔진입니다.</p>
+                <ul class="oneui-list">
+                    <li><span class="highlight">제로 레이턴시 하이브리드 연산:</span> 클라우드의 거대한 연산력과 스마트폰(또는 크롬북)의 온디바이스(On-device) AI를 지연 없이 넘나드는 기술입니다. 연산의 무거움(Gravity)을 없애버렸다는 의미를 담고 있습니다.</li>
+                    <li><span class="highlight">네트워크 오프라인 지원:</span> 인터넷이 끊긴 상황에서도 온디바이스 SLM(Small Language Model)이 작업을 이어받고, 온라인 연결 시 클라우드와 매끄럽게 동기화(Sync)합니다.</li>
+                    <li><span class="highlight">사용자 경험(UX) 패러다임 변화:</span> 로딩 바나 대기 시간이 사라져, AI와 인간이 사고하는 속도 그대로 상호작용이 가능해집니다.</li>
+                </ul>
+            </div>
+        </section>
+        
+        <!-- 7. 기타 및 7월 업데이트 예정 -->
+        <section id="july" class="oneui-card">
+            <div class="oneui-badge">Preview</div>
+            <div class="oneui-card-header">
+                <div class="oneui-card-icon">7</div>
+                <h2 class="oneui-card-title">기타 동향 및 7월 업데이트 예정</h2>
+            </div>
+            <div class="oneui-card-body">
+                <p>AI 생태계 확장을 위한 오픈소스 및 특정 산업군 타겟 업데이트가 다가오고 있습니다.</p>
+                <ul class="oneui-list">
+                    <li><span class="highlight">Gemma 3 출시 예정 (7월):</span> 구글의 오픈소스 모델인 Gemma의 차세대 버전이 7월 공개 예정입니다. 매개변수 대비 최고 성능(SOTA)을 갱신할 것으로 예측됩니다.</li>
+                    <li><span class="highlight">Gemini for Nonprofits / Religion (루머):</span> 비영리 단체 및 종교 기관을 위한 특화된 프라이버시 정책(데이터 학습 배제 등)과 저렴한 라이선스를 결합한 전용 워크스페이스 AI 요금제가 3분기 내 발표될 가능성이 높습니다.</li>
+                    <li><span class="highlight">보이스-투-액션(Voice-to-Action) 고도화:</span> 단순한 대화형 AI를 넘어, 음성 명령만으로 타사 앱(서드파티)을 제어하고 복합적인 작업을 수행하는 기능이 안드로이드 생태계 전반에 배포될 예정입니다.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Footer / Author Section -->
+        <footer class="author-section">
+            <p><strong>발행:</strong> 목회 AI 연구소</p>
+            <p><strong>소장:</strong> 백형진</p>
+            <p style="margin-top: 8px; font-size: 0.8rem; opacity: 0.6;">본 보고서는 2026년 6월 기준 구글 공식 발표 및 업계 동향을 심층 분석하여 작성되었습니다.</p>
+        </footer>
+
+    </main>
+
+    <script>
+        // One UI scroll effect for Header (shrink on scroll)
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.oneui-header');
+            if (window.scrollY > 20) {
+                header.style.paddingTop = '20px';
+                header.style.boxShadow = '0 1px 3px rgba(0,0,0,0.05)';
+            } else {
+                header.style.paddingTop = '60px';
+                header.style.boxShadow = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

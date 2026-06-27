@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Claude 업데이트 보고서 · 2026년 6월</title>
+<style>
+/* ─── One UI Token System ─── */
+:root {
+  --bg:            #F4F4F6;
+  --surface:       #FFFFFF;
+  --surface2:      #F8F8FA;
+  --blue:          #1259C3;
+  --blue-light:    #EDF3FF;
+  --blue-mid:      #2E6EE1;
+  --red:           #FF3B30;
+  --red-light:     #FFF0EF;
+  --green:         #00B969;
+  --green-light:   #EDFDF5;
+  --orange:        #FF6D00;
+  --orange-light:  #FFF3E6;
+  --text-primary:  #1C1C1E;
+  --text-second:   #3C3C43;
+  --text-muted:    #6B7684;
+  --text-hint:     #AEAEB2;
+  --border:        #E5E5EA;
+  --border-strong: #C7C7CC;
+  --r-card:        20px;
+  --r-pill:        100px;
+  --r-chip:        10px;
+  --shadow-card:   0 2px 12px rgba(0,0,0,0.06);
+  --shadow-float:  0 8px 28px rgba(0,0,0,0.12);
+}
+
+*{box-sizing:border-box;margin:0;padding:0;}
+
+body {
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR', -apple-system, sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  padding-bottom: 90px;
+}
+
+/* ─── Status Bar (One UI 상단) ─── */
+.oneui-statusbar {
+  background: var(--surface);
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid var(--border);
+}
+.statusbar-left { display: flex; align-items: center; gap: 6px; }
+.statusbar-right { display: flex; align-items: center; gap: 10px; font-size: 12px; }
+
+/* ─── Large Title Header (One UI 특징) ─── */
+.oneui-header {
+  background: var(--surface);
+  padding: 20px 20px 0;
+  position: sticky;
+  top: 44px;
+  z-index: 99;
+  border-bottom: 1px solid var(--border);
+}
+.oneui-header-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+.header-eyebrow {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--blue);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.header-large-title {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  color: var(--text-primary);
+}
+.header-subtitle {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 3px;
+}
+.header-date-chip {
+  background: var(--blue-light);
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: var(--r-pill);
+  white-space: nowrap;
+  margin-top: 6px;
+}
+
+/* ─── Tab Bar (One UI 스타일) ─── */
+.oneui-tabs {
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-top: 4px;
+}
+.oneui-tabs::-webkit-scrollbar { display: none; }
+.tab-btn {
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  padding: 10px 16px 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+.tab-btn.active {
+  color: var(--blue);
+  border-bottom-color: var(--blue);
+}
+
+/* ─── Content Area ─── */
+.content-area { padding: 16px 16px 0; }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* ─── Alert Card (One UI Notice) ─── */
+.alert-card {
+  background: var(--red-light);
+  border: 1.5px solid #FFD0CE;
+  border-radius: var(--r-card);
+  padding: 16px 18px;
+  margin-bottom: 12px;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.alert-icon-wrap {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: rgba(255,59,48,0.12);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+.alert-content-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--red);
+  margin-bottom: 4px;
+}
+.alert-content-body {
+  font-size: 13px;
+  color: #8B1A14;
+  line-height: 1.55;
+}
+.alert-badge {
+  display: inline-block;
+  background: var(--red);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: var(--r-pill);
+  margin-bottom: 6px;
+  letter-spacing: 0.05em;
+}
+
+/* ─── Section Label ─── */
+.section-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 20px 0 8px 2px;
+}
+
+/* ─── Summary Row (One UI 통계 위젯) ─── */
+.summary-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.summary-widget {
+  background: var(--surface);
+  border-radius: var(--r-card);
+  padding: 14px 12px;
+  text-align: center;
+  box-shadow: var(--shadow-card);
+}
+.summary-num {
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.summary-lbl {
+  font-size: 10px;
+  color: var(--text-muted);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+/* ─── Model Status Cards ─── */
+.model-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 12px; }
+.model-row {
+  background: var(--surface);
+  border-radius: var(--r-card);
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  box-shadow: var(--shadow-card);
+}
+.model-icon {
+  width: 44px; height: 44px;
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+.model-info { flex: 1; min-width: 0; }
+.model-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+.model-desc {
+  font-size: 12px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.model-status {
+  flex-shrink: 0;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: var(--r-pill);
+}
+.status-ok  { background: var(--green-light); color: var(--green); }
+.status-off { background: var(--red-light); color: var(--red); }
+
+/* ─── Tier Badge ─── */
+.tier {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: var(--r-pill);
+  margin-left: 6px;
+  vertical-align: middle;
+}
+.tier-mythos { background: #FCEEFF; color: #9B31CC; }
+.tier-opus   { background: var(--blue-light); color: var(--blue); }
+.tier-sonnet { background: #E8F7FF; color: #0077CC; }
+.tier-haiku  { background: var(--green-light); color: var(--green); }
+
+/* ─── Feature Cards (One UI 목록 카드) ─── */
+.feature-group {
+  background: var(--surface);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+.feature-group-header {
+  padding: 14px 16px 10px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.feature-group-icon {
+  width: 32px; height: 32px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px;
+}
+.feature-group-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.feature-group-count {
+  margin-left: auto;
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+.feature-item {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.feature-item:last-child { border-bottom: none; }
+.feature-item:hover { background: var(--surface2); }
+.feature-item:active { background: var(--bg); }
+.fi-icon {
+  width: 40px; height: 40px;
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.fi-body { flex: 1; min-width: 0; }
+.fi-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 3px;
+}
+.fi-desc {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+.fi-badge {
+  flex-shrink: 0;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: var(--r-pill);
+  margin-top: 2px;
+  align-self: flex-start;
+}
+.badge-new      { background: var(--blue-light); color: var(--blue); }
+.badge-beta     { background: #FFF3E6; color: #E65100; }
+.badge-preview  { background: #FCEEFF; color: #9B31CC; }
+.badge-update   { background: var(--green-light); color: #00875A; }
+.badge-ent      { background: #FFF3E6; color: var(--orange); }
+
+/* ─── Expandable Detail Sheet ─── */
+.detail-sheet {
+  display: none;
+  padding: 0 16px 14px 70px;
+  background: var(--surface2);
+  font-size: 13px;
+  color: var(--text-second);
+  line-height: 1.6;
+  border-top: 1px solid var(--border);
+}
+.detail-sheet.open { display: block; }
+.detail-sheet ul { padding-left: 16px; }
+.detail-sheet ul li { margin-bottom: 4px; }
+.detail-sheet code {
+  background: var(--border);
+  padding: 1px 6px;
+  border-radius: 5px;
+  font-family: 'SF Mono', 'Consolas', monospace;
+  font-size: 12px;
+}
+
+/* ─── Timeline (One UI 이벤트 로그 스타일) ─── */
+.tl-container {
+  background: var(--surface);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+.tl-item {
+  display: flex;
+  gap: 14px;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  align-items: flex-start;
+}
+.tl-item:last-child { border-bottom: none; }
+.tl-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+  padding-top: 2px;
+}
+.tl-dot-wrap {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px;
+}
+.tl-line {
+  width: 2px;
+  flex: 1;
+  background: var(--border);
+  min-height: 16px;
+}
+.tl-right { flex: 1; min-width: 0; }
+.tl-date {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 3px;
+}
+.tl-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 3px;
+}
+.tl-desc {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* ─── Korea Section Card ─── */
+.korea-wrap {
+  background: var(--surface);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+.korea-header {
+  background: linear-gradient(135deg, #1259C3 0%, #2E6EE1 100%);
+  padding: 18px 18px 16px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.korea-header h3 {
+  font-size: 17px;
+  font-weight: 700;
+  color: #fff;
+}
+.korea-header p {
+  font-size: 12px;
+  color: rgba(255,255,255,0.75);
+  margin-top: 2px;
+}
+.korea-partner-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+}
+.korea-partner-item {
+  padding: 13px 16px;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+.korea-partner-item:nth-child(even) { border-right: none; }
+.korea-partner-item:nth-last-child(-n+2) { border-bottom: none; }
+.kp-name { font-weight: 700; color: var(--text-primary); margin-bottom: 2px; }
+.kp-desc { font-size: 11.5px; color: var(--text-muted); line-height: 1.4; }
+
+/* ─── July Preview Cards ─── */
+.july-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.july-card {
+  background: var(--surface);
+  border-radius: var(--r-card);
+  padding: 16px 18px;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  border-left: 4px solid transparent;
+}
+.july-card.likely   { border-left-color: var(--blue); }
+.july-card.possible { border-left-color: var(--orange); }
+.july-card.watch    { border-left-color: var(--green); }
+.july-card-icon {
+  width: 44px; height: 44px;
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+.july-card-body h4 {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.prob-chip {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 9px;
+  border-radius: var(--r-pill);
+}
+.prob-high   { background: var(--blue-light); color: var(--blue); }
+.prob-mid    { background: #FFF3E6; color: var(--orange); }
+.prob-watch  { background: var(--green-light); color: var(--green); }
+.july-card-body p {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+
+/* ─── Command Card ─── */
+.cmd-card {
+  background: var(--surface);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+.cmd-item {
+  display: flex;
+  gap: 14px;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  align-items: center;
+}
+.cmd-item:last-child { border-bottom: none; }
+.cmd-icon {
+  width: 40px; height: 40px;
+  border-radius: 12px;
+  background: #1A1A1E;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 17px;
+  flex-shrink: 0;
+}
+.cmd-body { flex: 1; }
+.cmd-code {
+  font-family: 'SF Mono', 'Consolas', monospace;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--blue);
+  background: var(--blue-light);
+  padding: 3px 10px;
+  border-radius: var(--r-chip);
+  display: inline-block;
+  margin-bottom: 4px;
+}
+.cmd-desc { font-size: 12px; color: var(--text-muted); line-height: 1.45; }
+
+/* ─── Bottom Tab Bar (One UI 하단 네비) ─── */
+.bottom-tabbar {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  display: flex;
+  z-index: 200;
+  padding: 6px 0 8px;
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.06);
+}
+.btab {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 6px 4px;
+  cursor: pointer;
+  border: none;
+  background: none;
+  transition: transform 0.15s;
+}
+.btab:active { transform: scale(0.92); }
+.btab-icon {
+  width: 28px; height: 28px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px;
+  transition: background 0.2s;
+}
+.btab.active .btab-icon { background: var(--blue-light); }
+.btab-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-muted);
+  transition: color 0.2s;
+}
+.btab.active .btab-label { color: var(--blue); }
+
+/* ─── Info Banner ─── */
+.info-banner {
+  background: var(--blue-light);
+  border-radius: var(--r-card);
+  padding: 12px 16px;
+  font-size: 13px;
+  color: #1A3D7A;
+  line-height: 1.5;
+  margin-bottom: 12px;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+.info-banner strong { color: var(--blue); }
+
+/* ─── Search Bar Mock ─── */
+.search-bar {
+  background: var(--surface2);
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-pill);
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--text-hint);
+  margin-bottom: 16px;
+}
+
+@media (max-width: 480px) {
+  .summary-row { grid-template-columns: repeat(2, 1fr); }
+  .korea-partner-grid { grid-template-columns: 1fr; }
+  .korea-partner-item:nth-child(even) { border-right: none; }
+  .korea-partner-item { border-bottom: 1px solid var(--border); }
+  .korea-partner-item:last-child { border-bottom: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ─── STATUS BAR ─── -->
+<div class="oneui-statusbar">
+  <div class="statusbar-left">
+    <span>🕐</span>
+    <span id="current-time">09:41</span>
+  </div>
+  <div class="statusbar-right">
+    <span>📶</span><span>🔋 87%</span>
+  </div>
+</div>
+
+<!-- ─── LARGE TITLE HEADER ─── -->
+<div class="oneui-header">
+  <div class="oneui-header-top">
+    <div>
+      <div class="header-eyebrow">MIRACLE AI 연구소</div>
+      <div class="header-large-title">Claude 업데이트</div>
+      <div class="header-subtitle">2026년 6월 동향 및 7월 전망</div>
+    </div>
+    <div class="header-date-chip">Jun 2026</div>
+  </div>
+  <div class="oneui-tabs">
+    <button class="tab-btn active" onclick="switchTab('overview')">개요</button>
+    <button class="tab-btn" onclick="switchTab('features')">기능 업데이트</button>
+    <button class="tab-btn" onclick="switchTab('timeline')">타임라인</button>
+    <button class="tab-btn" onclick="switchTab('korea')">한국 동향</button>
+    <button class="tab-btn" onclick="switchTab('july')">7월 전망</button>
+  </div>
+</div>
+
+<!-- ─── CONTENT ─── -->
+<div class="content-area">
+
+  <!-- ══════════ TAB: 개요 ══════════ -->
+  <div class="tab-panel active" id="panel-overview">
+
+    <!-- Alert -->
+    <div style="height:12px;"></div>
+    <div class="alert-card">
+      <div class="alert-icon-wrap">⚠️</div>
+      <div>
+        <div class="alert-badge">긴급 공지</div>
+        <div class="alert-content-title">Fable 5 · Mythos 5 접근 중단 중</div>
+        <div class="alert-content-body">6월 12일 미국 수출통제 지시로 전 세계 접근 차단. Opus 4.8 등 <strong style="color:#1C1C1E;">다른 모델은 정상 운영</strong> 중입니다. Anthropic은 조속 복원을 위해 미국 정부와 협상 중.</div>
+      </div>
+    </div>
+
+    <!-- Summary Stats -->
+    <div class="section-label">이번 달 요약</div>
+    <div class="summary-row">
+      <div class="summary-widget">
+        <div class="summary-num" style="color:var(--blue);">104</div>
+        <div class="summary-lbl">누적 업데이트</div>
+      </div>
+      <div class="summary-widget">
+        <div class="summary-num" style="color:var(--green);">3</div>
+        <div class="summary-lbl">정상 모델 수</div>
+      </div>
+      <div class="summary-widget">
+        <div class="summary-num" style="color:var(--red);">2</div>
+        <div class="summary-lbl">중단 모델</div>
+      </div>
+      <div class="summary-widget">
+        <div class="summary-num" style="color:var(--orange);">57%</div>
+        <div class="summary-lbl">7/1 복원 확률</div>
+      </div>
+    </div>
+
+    <!-- Model Status -->
+    <div class="section-label">모델 현황</div>
+    <div class="model-list">
+      <div class="model-row">
+        <div class="model-icon" style="background:#FCEEFF;">🌟</div>
+        <div class="model-info">
+          <div class="model-name">Claude Fable 5 <span class="tier tier-mythos">Mythos급</span></div>
+          <div class="model-desc">최상위 일반 공개 모델 · 6월 9일 출시</div>
+        </div>
+        <div class="model-status status-off">⛔ 중단</div>
+      </div>
+      <div class="model-row">
+        <div class="model-icon" style="background:#FCEEFF;">🔒</div>
+        <div class="model-info">
+          <div class="model-name">Claude Mythos 5 <span class="tier tier-mythos">Mythos급</span></div>
+          <div class="model-desc">Project Glasswing 전용 · 제한적 배포</div>
+        </div>
+        <div class="model-status status-off">⛔ 중단</div>
+      </div>
+      <div class="model-row">
+        <div class="model-icon" style="background:var(--blue-light);">💎</div>
+        <div class="model-info">
+          <div class="model-name">Claude Opus 4.8 <span class="tier tier-opus">Opus</span></div>
+          <div class="model-desc">코딩·에이전트·Dynamic Workflows 기본</div>
+        </div>
+        <div class="model-status status-ok">✅ 정상</div>
+      </div>
+      <div class="model-row">
+        <div class="model-icon" style="background:#E8F7FF;">⚡</div>
+        <div class="model-info">
+          <div class="model-name">Claude Sonnet 4.6 <span class="tier tier-sonnet">Sonnet</span></div>
+          <div class="model-desc">장문 맥락·컴퓨터 사용·균형 성능</div>
+        </div>
+        <div class="model-status status-ok">✅ 정상</div>
+      </div>
+      <div class="model-row">
+        <div class="model-icon" style="background:var(--green-light);">🐦</div>
+        <div class="model-info">
+          <div class="model-name">Claude Haiku 4.5 <span class="tier tier-haiku">Haiku</span></div>
+          <div class="model-desc">저지연·저비용 · 빠른 응답 최적화</div>
+        </div>
+        <div class="model-status status-ok">✅ 정상</div>
+      </div>
+    </div>
+
+    <div class="info-banner">
+      💡 <div><strong>목회AI연구소 참고:</strong> 현재 업무에 사용 중인 Sonnet 4.6과 Haiku 4.5는 모두 정상 운영 중입니다. Fable 5 중단은 기존 워크플로우에 영향 없습니다.</div>
+    </div>
+
+  </div>
+
+  <!-- ══════════ TAB: 기능 업데이트 ══════════ -->
+  <div class="tab-panel" id="panel-features">
+    <div style="height:12px;"></div>
+
+    <!-- claude.ai 신기능 -->
+    <div class="feature-group">
+      <div class="feature-group-header">
+        <div class="feature-group-icon" style="background:var(--blue-light);">🌐</div>
+        <div class="feature-group-title">claude.ai 신기능</div>
+        <div class="feature-group-count">4개</div>
+      </div>
+
+      <div class="feature-item" onclick="toggleDetail(this)">
+        <div class="fi-icon" style="background:#F0E6FF;">💬</div>
+        <div class="fi-body">
+          <div class="fi-title">Claude Tag on Slack</div>
+          <div class="fi-desc">Slack 채널에서 @Claude를 태그해 작업 위임</div>
+        </div>
+        <div class="fi-badge badge-beta">Beta</div>
+      </div>
+      <div class="detail-sheet">
+        <ul>
+          <li>Opus 4.8 기반으로 채널별 컨텍스트를 기억하고 비동기 작업을 자율 수행</li>
+          <li>멀티플레이어: 채널 내 누구나 이어서 대화 가능</li>
+          <li>Anthropic 내부 제품팀 코드의 65%가 Claude Tag로 생성</li>
+          <li>Team·Enterprise 플랜 베타 제공 중</li>
+        </ul>
+      </div>
+
+      <div class="feature-item" onclick="toggleDetail(this)">
+        <div class="fi-icon" style="background:var(--blue-light);">📋</div>
+        <div class="fi-body">
+          <div class="fi-title">Artifacts — 라이브 공유 페이지</div>
+          <div class="fi-desc">세션 출력물을 실시간 업데이트 공유 페이지로 전환</div>
+        </div>
+        <div class="fi-badge badge-beta">Beta</div>
+      </div>
+      <div class="detail-sheet">
+        <ul>
+          <li>Claude Code 세션 결과물을 claude.ai에서 공유 가능한 페이지로 자동 전환</li>
+          <li>세션이 진행되는 동안 내용이 실시간으로 갱신됨</li>
+          <li>Team·Enterprise 플랜 베타 제공</li>
+        </ul>
+      </div>
+
+      <div class="feature-item" onclick="toggleDetail(this)">
+        <div class="fi-icon" style="background:var(--orange-light);">🎨</div>
+        <div class="fi-body">
+          <div class="fi-title">Claude Design 2.0 개선</div>
+          <div class="fi-desc">디자인 시스템 가져오기 재설계 · GitHub·파일·업로드 지원</div>
+        </div>
+        <div class="fi-badge badge-update">Update</div>
+      </div>
+      <div class="detail-sheet">
+        <ul>
+          <li>사이드바 홈 추가 및 Claude Code와 캔버스 직접 편집 연동</li>
+          <li>출시 첫 주 100만 명 이상 사용</li>
+          <li>여러 디자인 시스템 동시 가져오기 지원</li>
+        </ul>
+      </div>
+
+      <div class="feature-item" onclick="toggleDetail(this)">
+        <div class="fi-icon" style="background:var(--green-light);">❤️</div>
+        <div class="fi-body">
+          <div class="fi-title">건강 데이터 연동 (Health Features)</div>
+          <div class="fi-desc">Apple Health · Android Health Connect 연동</div>
+        </div>
+        <div class="fi-badge badge-beta">Beta · 미국</div>
+      </div>
+      <div class="detail-sheet">
+        <ul>
+          <li>활동·수면·운동 데이터 분석 및 시각화</li>
+          <li>미국 Pro·Max 플랜 우선 제공</li>
+          <li>Enterprise용 HIPAA-ready 인프라 출시 (의료기관 PHI 처리 지원)</li>
+          <li>건강 데이터는 모델 학습에 사용되지 않음</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Claude Code 신기능 -->
+    <div class="feature-group">
+      <div class="feature-group-header">
+        <div class="feature-group-icon" style="background:#1A1A1E; color:#00FF88; font-size:14px; font-family:monospace;">$ _</div>
+        <div class="feature-group-title">Claude Code 신기능</div>
+        <div class="feature-group-count">5개</div>
+      </div>
+
+      <div class="feature-item" onclick="toggleDetail(this)">
+        <div class="fi-icon" style="background:#1A1A1E; font-size:16px;">🔄</div>
+        <div class="fi-body">
+          <div class="fi-title">Dynamic Workflows</div>
+          <div class="fi-desc">수백 개 병렬 서브에이전트 조율 · 대규모 코드 작업</div>
+        </div>
+        <div class="fi-badge badge-preview">Preview</div>
+      </div>
+      <div class="detail-sheet">
+        <ul>
+          <li>단일 세션에서 수백 개 서브에이전트를 병렬 조율</li>
+          <li><code>ultracode</code> 모드 활성화 시 자동 적용</li>
+          <li>Max·Team·Enterprise 및 Bedrock/Vertex AI/Microsoft Foundry 지원</li>
+          <li>토큰 소비가 큰 만큼 소규모 작업부터 테스트 권장</li>
+        </ul>
+      </div>
+
+      <div class="feature-item" onclick="toggleDetail(this)">
+        <div class="fi-icon" style="background:#1A1A1E; font-size:16px;">🔑</div>
+        <div class="fi-body">
+          <div class="fi-title">MCP 로그인 CLI 명령어</div>
+          <div class="fi-desc"><code>claude mcp login</code> · 셸에서 직접 MCP 서버 인증</div>
+        </div>
+        <div class="fi-badge badge-new">New</div>
+      </div>
+      <div class="detail-sheet">
+        <ul>
+          <li><code>claude mcp login</code> — MCP 서버를 셸에서 인증</li>
+          <li><code>claude mcp logout</code> — 저장된 자격증명 삭제</li>
+          <li>기존 /mcp 인터랙티브 메뉴보다 훨씬 빠름</li>
+        </ul>
+      </div>
+
+      <div class="feature-item" onclick="toggleDetail(this)">
+        <div class="fi-icon" style="background:#1A1A1E; font-size:16px;">⏪</div>
+        <div class="fi-body">
+          <div class="fi-title">/rewind 대화 복원</div>
+          <div class="fi-desc">/clear 이전 시점으로 세션 상태 복원</div>
+        </div>
+        <div class="fi-badge badge-update">Update</div>
+      </div>
+      <div class="detail-sheet">
+        <ul>
+          <li><code>/rewind</code> 명령으로 /clear 실행 이전 대화로 복원 가능</li>
+          <li>서브에이전트 권한 요청이 백그라운드 자동 거부 → 메인 세션 표시로 변경</li>
+        </ul>
+      </div>
+
+      <div class="feature-item" onclick="toggleDetail(this)">
+        <div class="fi-icon" style="background:#1A1A1E; font-size:16px;">📁</div>
+        <div class="fi-body">
+          <div class="fi-title">/cd 작업 디렉토리 변경</div>
+          <div class="fi-desc">프롬프트 캐시 유지하며 폴더 전환</div>
+        </div>
+        <div class="fi-badge badge-new">New</div>
+      </div>
+      <div class="detail-sheet">
+        <ul>
+          <li><code>/cd [경로]</code>로 세션 중 작업 디렉토리 이동</li>
+          <li>프롬프트 캐시를 깨지 않아 비용·속도 효율 유지</li>
+          <li>멀티 저장소 작업 환경에 특히 유용</li>
+        </ul>
+      </div>
+
+      <div class="feature-item" onclick="toggleDetail(this)">
+        <div class="fi-icon" style="background:#1A1A1E; font-size:16px;">📅</div>
+        <div class="fi-body">
+          <div class="fi-title">예약 에이전트 (Scheduled Deployments)</div>
+          <div class="fi-desc">Cron 스케줄로 에이전트 자동 반복 실행</div>
+        </div>
+        <div class="fi-badge badge-new">New</div>
+      </div>
+      <div class="detail-sheet">
+        <ul>
+          <li>야간 데이터 동기화·주간 컴플라이언스 스캔·일별 다이제스트 자동화</li>
+          <li>일시중지·재개·온디맨드 실행 모두 지원</li>
+          <li>Rakuten이 주간 스프레드시트 분석에 활용 중</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Enterprise 기능 -->
+    <div class="feature-group">
+      <div class="feature-group-header">
+        <div class="feature-group-icon" style="background:var(--orange-light);">🏢</div>
+        <div class="feature-group-title">Enterprise 기능</div>
+        <div class="feature-group-count">3개</div>
+      </div>
+
+      <div class="feature-item" onclick="toggleDetail(this)">
+        <div class="fi-icon" style="background:var(--orange-light);">🛡️</div>
+        <div class="fi-body">
+          <div class="fi-title">신뢰 기기 원격 관리 (Trusted Devices)</div>
+          <div class="fi-desc">원격 Claude Code 세션 전 기기 인증 필수화</div>
+        </div>
+        <div class="fi-badge badge-ent">Enterprise</div>
+      </div>
+      <div class="detail-sheet">
+        <ul>
+          <li>Team·Enterprise 관리자가 원격 Claude Code 세션 전 기기 인증 요구 설정 가능</li>
+          <li>공개 베타 제공</li>
+        </ul>
+      </div>
+
+      <div class="feature-item" onclick="toggleDetail(this)">
+        <div class="fi-icon" style="background:var(--orange-light);">👥</div>
+        <div class="fi-body">
+          <div class="fi-title">역할 기반 권한 확장 (Admin Permissions)</div>
+          <div class="fi-desc">커스텀 역할에 관리자 권한 추가 · SCIM 지원</div>
+        </div>
+        <div class="fi-badge badge-ent">Enterprise</div>
+      </div>
+      <div class="detail-sheet">
+        <ul>
+          <li>커스텀 역할에 결제·개인정보 등 관리자 권한 세분화 가능</li>
+          <li>SCIM 기반 그룹 자동 프로비저닝 지원</li>
+          <li>그룹별 Claude 기능 제한·지출 한도 설정 가능</li>
+        </ul>
+      </div>
+
+      <div class="feature-item" onclick="toggleDetail(this)">
+        <div class="fi-icon" style="background:var(--orange-light);">🤖</div>
+        <div class="fi-body">
+          <div class="fi-title">Managed Agents — 자체 호스팅 샌드박스</div>
+          <div class="fi-desc">기업 인프라에서 에이전트 도구 실행</div>
+        </div>
+        <div class="fi-badge badge-ent">Public Beta</div>
+      </div>
+      <div class="detail-sheet">
+        <ul>
+          <li>Cloudflare·Daytona·Modal·Vercel 등 기업 인프라에서 에이전트 실행</li>
+          <li>MCP 터널 리서치 프리뷰 제공</li>
+          <li>기업 보안 정책·감사 로그 완전 적용 가능</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══════════ TAB: 타임라인 ══════════ -->
+  <div class="tab-panel" id="panel-timeline">
+    <div style="height:12px;"></div>
+    <div class="tl-container">
+
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-dot-wrap" style="background:var(--blue-light);">🤝</div>
+          <div class="tl-line"></div>
+        </div>
+        <div class="tl-right">
+          <div class="tl-date">6월 3일</div>
+          <div class="tl-title">Partner Network — Services Track 출시</div>
+          <p class="tl-desc">파트너 생태계 공식화. 서비스 트랙과 파트너 허브 신설.</p>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-dot-wrap" style="background:#FCEEFF;">🌟</div>
+          <div class="tl-line"></div>
+        </div>
+        <div class="tl-right">
+          <div class="tl-date">6월 9일</div>
+          <div class="tl-title">Claude Fable 5 &amp; Mythos 5 정식 출시</div>
+          <p class="tl-desc">Mythos급 최상위 모델 공개. Pro·Max·Enterprise 6월 22일까지 무료 제공 예정이었음.</p>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-dot-wrap" style="background:var(--red-light);">🚫</div>
+          <div class="tl-line"></div>
+        </div>
+        <div class="tl-right">
+          <div class="tl-date" style="color:var(--red);">6월 12일 17:21 ET</div>
+          <div class="tl-title" style="color:var(--red);">미국 정부 수출통제 지시 — Fable 5 전 세계 접근 중단</div>
+          <p class="tl-desc">상무부가 사이버보안 취약점 우려로 외국인 접근 차단 지시. Anthropic은 이의를 제기하면서도 즉시 전면 차단 조치.</p>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-dot-wrap" style="background:var(--green-light);">⚡</div>
+          <div class="tl-line"></div>
+        </div>
+        <div class="tl-right">
+          <div class="tl-date">6월 15–19일</div>
+          <div class="tl-title">Claude Code Week 25 — Artifacts 베타 출시</div>
+          <p class="tl-desc">세션 출력물의 라이브 공유 페이지 변환 기능 베타 출시. 규칙 매칭 개선 다수 포함.</p>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-dot-wrap" style="background:#EDF3FF;">🇰🇷</div>
+          <div class="tl-line"></div>
+        </div>
+        <div class="tl-right">
+          <div class="tl-date">6월 17일</div>
+          <div class="tl-title">Anthropic 서울 오피스 공식 개소</div>
+          <p class="tl-desc">NAVER·LG CNS·Samsung SDS·Nexon 등 파트너십 발표. 과기정통부 AI 안전 MOU 체결. KAIST 등 4개 대학 연구자 60명 지원.</p>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-dot-wrap" style="background:#1A1A1E; font-size:13px; color:#00FF88; font-family:monospace;">$</div>
+          <div class="tl-line"></div>
+        </div>
+        <div class="tl-right">
+          <div class="tl-date">6월 22–26일</div>
+          <div class="tl-title">Claude Code Week 26 — MCP 로그인, /rewind, Trusted Devices</div>
+          <p class="tl-desc"><code style="background:var(--border);padding:1px 5px;border-radius:4px;font-size:11px;">claude mcp login</code> CLI 추가, /rewind 대화 복원, 하단 탭바 힌트 표시 버그 수정.</p>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-dot-wrap" style="background:#FFF3E6;">⏳</div>
+        </div>
+        <div class="tl-right">
+          <div class="tl-date" style="color:var(--orange);">6월 27일 · 현재</div>
+          <div class="tl-title">Fable 5 여전히 중단 — 협상 진행 중</div>
+          <p class="tl-desc">Kalshi 예측 시장 기준 7월 1일 이전 복원 확률 약 57%. Anthropic "며칠 내 복원 매우 자신한다" 공식 입장. Opus 4.8 정상 운영.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════ TAB: 한국 동향 ══════════ -->
+  <div class="tab-panel" id="panel-korea">
+    <div style="height:12px;"></div>
+
+    <div class="alert-card">
+      <div class="alert-icon-wrap">🇰🇷</div>
+      <div>
+        <div class="alert-badge">한국 특이사항</div>
+        <div class="alert-content-title">Glasswing 2기 한국 접근 일시 취소</div>
+        <div class="alert-content-body">수출통제 여파로 삼성·SK하이닉스·SK텔레콤·KISA의 Project Glasswing 참여 접근이 취소됨. <strong style="color:#1C1C1E;">Anthropic은 복원 확약.</strong></div>
+      </div>
+    </div>
+
+    <div class="korea-wrap">
+      <div class="korea-header">
+        <div style="font-size:28px;">🏙️</div>
+        <div>
+          <h3>서울 오피스 개소 · 6월 17일</h3>
+          <p>아태지역 3번째 오피스 · 대표: 최기영 (前 Snowflake)</p>
+        </div>
+      </div>
+      <div class="korea-partner-grid">
+        <div class="korea-partner-item">
+          <div class="kp-name">🟢 NAVER</div>
+          <div class="kp-desc">전체 엔지니어 조직 Claude Code 배포</div>
+        </div>
+        <div class="korea-partner-item">
+          <div class="kp-name">🔵 LG CNS</div>
+          <div class="kp-desc">수천 명 임직원 Claude 배포 · LG그룹 확대</div>
+        </div>
+        <div class="korea-partner-item">
+          <div class="kp-name">⬛ Samsung SDS</div>
+          <div class="kp-desc">Cowork·Code 삼성전자 직원 적용</div>
+        </div>
+        <div class="korea-partner-item">
+          <div class="kp-name">🎮 Nexon</div>
+          <div class="kp-desc">라이브서비스 게임 코드 개발에 활용</div>
+        </div>
+        <div class="korea-partner-item">
+          <div class="kp-name">💬 Channel Corp</div>
+          <div class="kp-desc">23만+ 기업 고객 서비스 AI에 탑재</div>
+        </div>
+        <div class="korea-partner-item">
+          <div class="kp-name">⚡ Hanwha Solutions</div>
+          <div class="kp-desc">AWS Bedrock 통해 Claude 활용</div>
+        </div>
+        <div class="korea-partner-item">
+          <div class="kp-name">🏛️ 과기정통부 MOU</div>
+          <div class="kp-desc">AI 안전 협력 협약 체결</div>
+        </div>
+        <div class="korea-partner-item">
+          <div class="kp-name">🎓 NAIRL 컨소시엄</div>
+          <div class="kp-desc">KAIST·고려대·연세대·POSTECH 60명 지원</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-banner">
+      🔭 <div>Anthropic은 서울을 도쿄·벵갈루루에 이어 아태지역 3번째 거점으로 선택. 한국이 Anthropic의 가장 적극적인 시장 중 하나임을 공식 확인.</div>
+    </div>
+  </div>
+
+  <!-- ══════════ TAB: 7월 전망 ══════════ -->
+  <div class="tab-panel" id="panel-july">
+    <div style="height:12px;"></div>
+
+    <div class="section-label">유력 (High Probability)</div>
+    <div class="july-grid">
+
+      <div class="july-card likely">
+        <div class="july-card-icon" style="background:#FCEEFF;">🔓</div>
+        <div class="july-card-body">
+          <h4>Fable 5 &amp; Mythos 5 복원 <span class="prob-chip prob-high">7/1 前 57%</span></h4>
+          <p>미국 정부와 협상 타결 시 7월 초 복원 예상. 7월 17일 이전 복원 확률은 약 75%. 7월 8일 신원 확인 절차 후 미국 내 재진입 경로 마련 예정.</p>
+        </div>
+      </div>
+
+      <div class="july-card likely">
+        <div class="july-card-icon" style="background:var(--blue-light);">🇰🇷</div>
+        <div class="july-card-body">
+          <h4>한국 Glasswing Wave 2 복원 <span class="prob-chip prob-high">유력</span></h4>
+          <p>삼성·SK하이닉스·SK텔레콤·KISA 등 한국 Glasswing 2기 파트너 접근 복원 예정. Anthropic이 서울 오피스 개소와 함께 한국 장기 투자 의지 표명.</p>
+        </div>
+      </div>
+
+      <div class="july-card likely">
+        <div class="july-card-icon" style="background:#1A1A1E;">🔄</div>
+        <div class="july-card-body">
+          <h4>Dynamic Workflows 확대 <span class="prob-chip prob-high">유력</span></h4>
+          <p>현재 Research Preview인 다이나믹 워크플로우가 더 많은 플랜으로 확대. 토큰 사용량 최적화 및 Ultracode 기능 안정화 예상.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="section-label" style="margin-top:20px;">가능성 있음 (Possible)</div>
+    <div class="july-grid">
+
+      <div class="july-card possible">
+        <div class="july-card-icon" style="background:var(--orange-light);">🌐</div>
+        <div class="july-card-body">
+          <h4>Claude Tag 플랫폼 확대 <span class="prob-chip prob-mid">가능</span></h4>
+          <p>Slack 베타 이후 다른 협업 도구로 확장 예고. Anthropic이 "Claude가 일하는 모든 공간으로 확대"를 로드맵으로 제시.</p>
+        </div>
+      </div>
+
+      <div class="july-card possible">
+        <div class="july-card-icon" style="background:var(--orange-light);">🧠</div>
+        <div class="july-card-body">
+          <h4>메모리 'Dreaming' 기능 탑재 <span class="prob-chip prob-mid">가능</span></h4>
+          <p>에이전트 세션 검토·패턴 추출·큐레이션하는 'Dreaming'이 플랫폼 기본 기능으로 포함될 가능성. 장기 에이전트 품질 자동 향상 목적.</p>
+        </div>
+      </div>
+
+      <div class="july-card possible">
+        <div class="july-card-icon" style="background:var(--orange-light);">🏥</div>
+        <div class="july-card-body">
+          <h4>Claude for Healthcare 기능 확대 <span class="prob-chip prob-mid">가능</span></h4>
+          <p>HIPAA-ready Enterprise 기능 고도화 및 의료 특화 커넥터 추가 예상. 현재 미국 한정인 건강 데이터 연동 국가 확대 가능성.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="section-label" style="margin-top:20px;">주목 동향 (Watch)</div>
+    <div class="july-grid">
+
+      <div class="july-card watch">
+        <div class="july-card-icon" style="background:var(--green-light);">🔮</div>
+        <div class="july-card-body">
+          <h4>Mythos 5.1 또는 6 발표 가능성 <span class="prob-chip prob-watch">미확인</span></h4>
+          <p>6월 21일 애널리스트 보고서에 따르면 Fable 5 중단 9일 만에 이미 후속 모델 학습 완료 추정. Anthropic은 미확인 상태이나 주목할 만한 동향.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="info-banner" style="margin-top:16px;">
+      📌 <div><strong>목회AI연구소 실무 메모:</strong> Dynamic Workflows와 Scheduled Agents는 Claude Code 기반 "AI 직원 10명" 자동화 시스템 구축에 직접 활용 가능합니다. 7월 업데이트 이후 Playwright MCP + Gemini MCP 연동 테스트를 병행하는 것을 권장합니다.</div>
+    </div>
+  </div>
+
+</div><!-- /content-area -->
+
+<!-- ─── BOTTOM TAB BAR (One UI 하단 네비) ─── -->
+<div class="bottom-tabbar">
+  <button class="btab active" onclick="switchBottomTab('overview', this)">
+    <div class="btab-icon">📊</div>
+    <div class="btab-label">개요</div>
+  </button>
+  <button class="btab" onclick="switchBottomTab('features', this)">
+    <div class="btab-icon">⚡</div>
+    <div class="btab-label">기능</div>
+  </button>
+  <button class="btab" onclick="switchBottomTab('timeline', this)">
+    <div class="btab-icon">📅</div>
+    <div class="btab-label">타임라인</div>
+  </button>
+  <button class="btab" onclick="switchBottomTab('korea', this)">
+    <div class="btab-icon">🇰🇷</div>
+    <div class="btab-label">한국</div>
+  </button>
+  <button class="btab" onclick="switchBottomTab('july', this)">
+    <div class="btab-icon">🔭</div>
+    <div class="btab-label">7월 전망</div>
+  </button>
+</div>
+
+<script>
+/* ─── Tab switching ─── */
+function switchTab(name) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('panel-' + name).classList.add('active');
+  const tabs = document.querySelectorAll('.tab-btn');
+  const map = {overview:0, features:1, timeline:2, korea:3, july:4};
+  tabs[map[name]].classList.add('active');
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function switchBottomTab(name, el) {
+  switchTab(name);
+  document.querySelectorAll('.btab').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+}
+
+/* ─── Feature item expand ─── */
+function toggleDetail(el) {
+  const sheet = el.nextElementSibling;
+  if (!sheet || !sheet.classList.contains('detail-sheet')) return;
+  sheet.classList.toggle('open');
+}
+
+/* ─── Clock ─── */
+function updateClock() {
+  const now = new Date();
+  const h = String(now.getHours()).padStart(2,'0');
+  const m = String(now.getMinutes()).padStart(2,'0');
+  const el = document.getElementById('current-time');
+  if (el) el.textContent = h + ':' + m;
+}
+updateClock();
+setInterval(updateClock, 10000);
+
+/* ─── Scroll tab into view on click ─── */
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    this.scrollIntoView({behavior:'smooth', block:'nearest', inline:'center'});
+  });
+});
+</script>
+</body>
+</html>
