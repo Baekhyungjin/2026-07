@@ -3,7 +3,11 @@ import { Document, Page, pdfjs } from 'react-pdf';
 import { Download, BookOpen, X } from 'lucide-react';
 
 // react-pdf worker setup
-pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
+// react-pdf worker setup (Vite 방식)
+pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+  'pdfjs-dist/build/pdf.worker.min.mjs',
+  import.meta.url,
+).toString();
 
 const EbookSection = () => {
   const [numPages, setNumPages] = useState(null);
@@ -61,9 +65,10 @@ const EbookSection = () => {
             
             <div style={pdfWrapperStyle}>
               <Document
-                file="/assets/AI와_신앙_교정본.pdf"
+                file={encodeURI("/assets/AI와_신앙_교정본.pdf")}
                 onLoadSuccess={onDocumentLoadSuccess}
                 loading={<div style={{padding: '40px', textAlign: 'center'}}>PDF를 불러오는 중입니다...</div>}
+                error={<div style={{padding: '40px', textAlign: 'center', color: 'red'}}>PDF를 불러오는데 실패했습니다. 다운로드 버튼을 이용해주세요.</div>}
               >
                 <Page pageNumber={pageNumber} renderTextLayer={false} renderAnnotationLayer={false} />
               </Document>
